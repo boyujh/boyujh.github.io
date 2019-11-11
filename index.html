@@ -1,6 +1,4 @@
-<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -33,7 +31,6 @@
         }
 
         #content {
-            /* background: linear-gradient(to bottom right, #f5f454, #fbd1b7); */
             margin: auto;
         }
 
@@ -52,7 +49,7 @@
 
         img {
             margin: 10px 10px;
-            width: 40%;
+            padding: 0;
         }
 
         .menu {
@@ -134,18 +131,31 @@
                 //content根据点击按钮加载不同的html
                 var page = $(this).attr("data-src");
                 if (page) {
-                    $("#content").load(page);
+                    $("#content").load(page, function (responseTxt, statusTxt, xhr) {
+                        if (statusTxt == "success") {
+                            layoutImages();
+                        }
+                    });
                 }
             });
             // 自动点击第一个菜单
             $("div .subMenu")[0].click();
-            // initSize();
+            initSize();
         });
 
         /*content高度*/
         function initSize() {
             var height = $(window).height() - $("header").height() - $("#menu").height();
             $("#content").height(height + "px");
+        }
+
+        function layoutImages() {
+            var imgs = $("#content img");
+            var screenWidth = $(window).width();
+            var imgWidth = (screenWidth - 4 * 12.0) / 2.0;
+            imgs.each(function (i) {
+                $(this).css({ "width": (imgWidth/screenWidth * 100 + "%")});
+            });
         }
     </script>
 </head>
