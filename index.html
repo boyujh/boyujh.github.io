@@ -33,13 +33,17 @@
         #topPlaceholder {
             height: 44px;
             width: 100%;
-            background-color: green;
+        }
+
+        #bottomPlaceholder {
+            height: 84px;
+            width: 100%;
         }
 
         .menu {
             display: block;
             position: fixed;
-            bottom: 0;
+            bottom: 0px;
             width: 100%;
             height: 64px;
             color: #474747;
@@ -88,6 +92,14 @@
         .csiteSubTitle {
             margin-left: 10px;
             clear: both;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .csiteSectionContainer {
+            display: block;
+            width: 100%;
+            overflow: hidden;
         }
 
         .imagefigure {
@@ -97,6 +109,7 @@
 
         .imagefigure img {
             width: 100%;
+            display: block;
         }
 
         .imagefigure figcaption {
@@ -107,13 +120,14 @@
         #companyTitle {
             margin-left: 10px;
             clear: both;
+            font-size: 16px;
+            font-weight: bold;
         }
 
         #companyInfo {
             text-indent: 2em;
             margin: auto 10px;
         }
-
     </style>
 
     <script src="./jquery1.8.1.js"></script>
@@ -121,9 +135,13 @@
     <script>
         $(document).ready(function () {
             //添加图片
-            $("div .subMenu>img").each(function () {
+            $("div .subMenu>img").each(function (i) {
                 var name = $(this).attr("data-imgname");
-                var src = "./images/" + name + ".png"
+                var imageType = "Unable.png";
+                if (i == 0) {
+                    imageType = "Enable.png";
+                }
+                var src = "./images/" + name + imageType;
                 //设置img的属性和值。
                 $(this).attr("src", src);
             });
@@ -134,7 +152,7 @@
                 var $img = $(".active>img");
                 //返回被选元素的属性值
                 var name = $img.attr("data-imgname");
-                var src = "./images/" + name + ".png"
+                var src = "./images/" + name + "Unable.png"
                 $img.attr("src", src);
                 $(".active").removeClass("active");
 
@@ -143,7 +161,7 @@
                 //找到所有 div(subMenu) 的子元素(img)
                 $img = $(this).children("img");
                 name = $img.attr("data-imgname");
-                src = "./images/" + name + ".png"
+                src = "./images/" + name + "Enable.png"
                 //设置img的属性和值。
                 $img.attr("src", src);
 
@@ -179,8 +197,8 @@
     <div id="topPlaceholder"></div>
     <div id="content">
         <div id="csite">
-            <h3 id="csiteHeader">施工案例</h3>
-            <h4 class="csiteSubTitle">案例1</h4>
+            <!-- <h3 id="csiteHeader">施工案例</h3> -->
+            <p class="csiteSubTitle">施工案例(xxx工厂)</p>
             <div class="csiteSectionContainer">
                 <figure class="imagefigure">
                     <img src="./images/boyu1.jpeg">
@@ -195,7 +213,7 @@
                     <figcaption>施工后</figcaption>
                 </figure>
             </div>
-            <h4 class="csiteSubTitle">案例2</h4>
+            <p class="csiteSubTitle">施工案例(xxx工厂)</p>
             <div class="csiteSectionContainer">
                 <figure class="imagefigure">
                     <img src="./images/boyu4.jpeg">
@@ -218,17 +236,18 @@
         <div id="companyInfoSection">
             <h3 id="companyTitle">公司介绍</h3>
             <p id="companyInfo">
-                遂平博宇净化工程有限公司主要经营：空气净化工程、机电设备工程安装、室内外装饰、机械设备、电子设备、建筑材料/销售
-                我公司有完善的质量保证体系，通过了所有合作伙伴的高标准质检及认可。为开拓市场，
+                遂平博宇净化工程有限公司主要经营：空气净化工程、机电设备工程安装、室内外装饰、机械设备、电子设备、建筑材料/销售，
+                我们公司有完善的质量保证体系，通过了所有合作伙伴的高标准质检及认可。为开拓市场，
                 实现互惠互利，我们将本着“价格，质量”双优，“诚信，服务”共赢的经营理念，
                 竭诚为广大客户服务。我们公司本着“不争价格最低，但求质量最好”的原则，
                 竭诚为客户提供优质诚信的服务。
             </p>
         </div>
     </div>
+    <div id="bottomPlaceholder"></div>
     <div id="menu" class="menu">
         <div id="one" class="subMenu text-center" data-src="csite">
-            <img class="menu_img" data-imgname="printWeb">
+            <img class="menu_img" data-imgname="paint">
             <div class="menu_name">施工案例</div>
         </div>
         <div id="two" class="subMenu text-center" data-src="instruction">
