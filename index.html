@@ -1,4 +1,5 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -10,45 +11,29 @@
 
         body {
             margin: 0;
+            padding: 0;
             font-family: 微软雅黑;
         }
 
-        h3 {
-            margin-left: 10px;
-        }
-
-        header {
+        #topHeader {
             position: fixed;
-            height: 60px;
-            line-height: 60px;
+            height: 44px;
+            line-height: 44px;
             width: 100%;
             color: #fff;
             font-family: "黑体";
             font-weight: 200;
             font-size: 20px;
+            text-align: center;
             /*背景色渐变*/
             background: linear-gradient(to bottom right, #F56739, #FB9749);
-        }
-
-        #content {
-            margin: auto;
+            z-index: 9999;
         }
 
         #topPlaceholder {
-            height: 60px;
+            height: 44px;
             width: 100%;
-            top: 60px;
-        }
-
-        #bottomPlaceholder {
-            height: 64px;
-            width: 100%;
-            bottom: 64px;
-            top: 0px;
-        }
-
-        img {
-            margin: 10px 10px;
+            background-color: green;
         }
 
         .menu {
@@ -94,6 +79,41 @@
         .text-center {
             text-align: center
         }
+
+        /* 案例页面css */
+        #csiteHeader {
+            text-align: center;
+        }
+
+        .csiteSubTitle {
+            margin-left: 10px;
+            clear: both;
+        }
+
+        .imagefigure {
+            margin: 10px 10px;
+            float: left;
+        }
+
+        .imagefigure img {
+            width: 100%;
+        }
+
+        .imagefigure figcaption {
+            text-align: center;
+        }
+
+        /* 公司介绍css */
+        #companyTitle {
+            margin-left: 10px;
+            clear: both;
+        }
+
+        #companyInfo {
+            text-indent: 2em;
+            margin: auto 10px;
+        }
+
     </style>
 
     <script src="./jquery1.8.1.js"></script>
@@ -129,62 +149,92 @@
 
                 //content根据点击按钮加载不同的html
                 var page = $(this).attr("data-src");
-                if (page) {
-                    $("#content").load(page, function (responseTxt, statusTxt, xhr) {
-                        if (statusTxt == "success") {
-                            layoutImages();
-                        }
-                    });
+                if (page == "csite") {
+                    $("#csite").show();
+                    $("#companyInfoSection").css({ "display": "none" });
+                } else {
+                    $("#csite").css({ "display": "none" });
+                    $("#companyInfoSection").show();
                 }
             });
             // 自动点击第一个菜单
             $("div .subMenu")[0].click();
-            // initSize();
+            layoutImages();
         });
 
-        /*content高度*/
-        function initSize() {
-            var height = $(window).height() - $("header").height() - $("#menu").height();
-            $("#content").height(height + "px");
-        }
-
         function layoutImages() {
-            var imgs = $("#content img");
+            var imgs = $(".imagefigure");
             var screenWidth = $(window).width();
             var imgWidth = (screenWidth - 4 * 12.0) / 2.0;
+            var result = (imgWidth / screenWidth * 100 + "%")
             imgs.each(function (i) {
-                $(this).css({ "width": (imgWidth/screenWidth * 100 + "%")});
+                $(this).css({ "width": result });
             });
         }
     </script>
 </head>
 
 <body>
-    <header class="text-center">博宇净化工程有限公司</header>
+    <header id="topHeader">博宇净化工程有限公司</header>
     <div id="topPlaceholder"></div>
-    <div id="content"></div>
-    <div id="bottomPlaceholder"></div>
-    <div id="menu" class="menu">
-        <div id="one" class="subMenu text-center" data-src="csite.html">
-            <img class="menu_img" data-imgname="printWeb">
-            <div class="menu_name">施工现场</div>
+    <div id="content">
+        <div id="csite">
+            <h3 id="csiteHeader">施工案例</h3>
+            <h4 class="csiteSubTitle">案例1</h4>
+            <div class="csiteSectionContainer">
+                <figure class="imagefigure">
+                    <img src="./images/boyu1.jpeg">
+                    <figcaption>施工前</figcaption>
+                </figure>
+                <figure class="imagefigure">
+                    <img src="./images/boyu2.jpeg">
+                    <figcaption>施工中</figcaption>
+                </figure>
+                <figure class="imagefigure">
+                    <img src="./images/boyu3.jpeg">
+                    <figcaption>施工后</figcaption>
+                </figure>
+            </div>
+            <h4 class="csiteSubTitle">案例2</h4>
+            <div class="csiteSectionContainer">
+                <figure class="imagefigure">
+                    <img src="./images/boyu4.jpeg">
+                    <figcaption>施工中</figcaption>
+                </figure>
+                <figure class="imagefigure">
+                    <img src="./images/boyu5.jpeg">
+                    <figcaption>施工中</figcaption>
+                </figure>
+                <figure class="imagefigure">
+                    <img src="./images/boyu6.jpeg">
+                    <figcaption>施工中</figcaption>
+                </figure>
+                <figure class="imagefigure">
+                    <img src="./images/boyu7.jpeg">
+                    <figcaption>施工中</figcaption>
+                </figure>
+            </div>
         </div>
-        <div id="two" class="subMenu text-center" data-src="instruction.html">
+        <div id="companyInfoSection">
+            <h3 id="companyTitle">公司介绍</h3>
+            <p id="companyInfo">
+                遂平博宇净化工程有限公司主要经营：空气净化工程、机电设备工程安装、室内外装饰、机械设备、电子设备、建筑材料/销售
+                我公司有完善的质量保证体系，通过了所有合作伙伴的高标准质检及认可。为开拓市场，
+                实现互惠互利，我们将本着“价格，质量”双优，“诚信，服务”共赢的经营理念，
+                竭诚为广大客户服务。我们公司本着“不争价格最低，但求质量最好”的原则，
+                竭诚为客户提供优质诚信的服务。
+            </p>
+        </div>
+    </div>
+    <div id="menu" class="menu">
+        <div id="one" class="subMenu text-center" data-src="csite">
+            <img class="menu_img" data-imgname="printWeb">
+            <div class="menu_name">施工案例</div>
+        </div>
+        <div id="two" class="subMenu text-center" data-src="instruction">
             <img class="menu_img" data-imgname="company">
             <div class="menu_name">公司简介</div>
         </div>
-        <!-- <div id="three" class="subMenu text-center" data-src="personal.html">
-            <img class="menu_img" data-imgname="3">
-            <div class="menu_name">测试1</div>
-        </div>
-        <div id="four" class="subMenu text-center" data-src="personal.html">
-            <img class="menu_img" data-imgname="4">
-            <div class="menu_name">测试2</div>
-        </div>
-        <div id="four" class="subMenu text-center" data-src="personal.html">
-            <img class="menu_img" data-imgname="5">
-            <div class="menu_name">测试3</div>
-        </div> -->
     </div>
 </body>
 

@@ -5,16 +5,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script></script>
+    <style type="text/css">
+        #csiteHeader {
+            text-align: center;
+        }
+
+        .csiteSubTitle {
+            margin-left: 10px;
+            clear: both;
+        }
+
+        .imagefigure {
+            margin: 10px 10px;
+            float: left;
+        }
+
+        .imagefigure img {
+            width: 100%;
+        }
+
+        .imagefigure figcaption {
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
-    <h3>施工案例</h3>
-    <img src="./images/boyu1.jpeg">
-    <img src="./images/boyu2.jpeg">
-    <img src="./images/boyu3.jpeg">
-    <img src="./images/boyu4.jpeg">
-    <img src="./images/boyu5.jpeg">
-    <img src="./images/boyu6.jpeg">
+    <h3 id="csiteHeader">施工案例</h3>
+    <h4 class="csiteSubTitle">案例1</h4>
+    <div class="csiteSectionContainer">
+        <figure class="imagefigure">
+            <img src="./images/boyu1.jpeg">
+            <figcaption>施工前</figcaption>
+        </figure>
+        <figure class="imagefigure">
+            <img src="./images/boyu2.jpeg">
+            <figcaption>施工中</figcaption>
+        </figure>
+        <figure class="imagefigure">
+            <img src="./images/boyu3.jpeg">
+            <figcaption>施工后</figcaption>
+        </figure>
+    </div>
+    <h4 class="csiteSubTitle">案例2</h4>
+    <div class="csiteSectionContainer">
+        <figure class="imagefigure">
+            <img src="./images/boyu4.jpeg">
+            <figcaption>施工中</figcaption>
+        </figure>
+        <figure class="imagefigure">
+            <img src="./images/boyu5.jpeg">
+            <figcaption>施工中</figcaption>
+        </figure>
+        <figure class="imagefigure">
+            <img src="./images/boyu6.jpeg">
+            <figcaption>施工中</figcaption>
+        </figure>
+        <figure class="imagefigure">
+            <img src="./images/boyu7.jpeg">
+            <figcaption>施工中</figcaption>
+        </figure>
+    </div>
 </body>
 
 </html>
