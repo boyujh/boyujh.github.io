@@ -133,11 +133,21 @@
             position: fixed;
             top: 0;
             left: 0;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.8);
             z-index: 998;
             width: 100%;
             height: 100%;
             display: none;
+        }
+
+        #close {
+            height: 50px;
+            width: 50px;
+            position: relative;
+            top: 50%;
+            left: 50%;
+            margin-left: -25px;
+            margin-top: -25px;
         }
 
     </style>
@@ -218,11 +228,12 @@
                 var realWidth = this.width;//获取图片真实宽度
                 var realHeight = this.height;//获取图片真实高度
                 var imgWidth, imgHeight;
-                $(bigimg).css("width", windowW);//以最终的宽度对图片缩放
-                var w = 0;//计算图片与窗口左边距
-                var h = 0;//计算图片与窗口上边距
-                $(innerdiv).css({ "top": h, "left": w });//设置#innerdiv的top和left属性
-                $("#close").css({ "margin-left": ((windowW - 50.0) / 2)});
+                var marginV = 20;
+                var topMargin = 100;
+                windowH -= topMargin;
+                $(bigimg).css("width", windowW - 2 * marginV);//以最终的宽度对图片缩放
+                $(innerdiv).css({ "top": topMargin, "left": marginV});//设置#innerdiv的top和left属性
+                $("#closeContanier").css({"height":150, "width":"100%"});
                 $(outerdiv).fadeIn("fast");//淡入显示#outerdiv及.goal_img
             });
             $(outerdiv).click(function () {//再次点击淡出消失弹出层
@@ -307,7 +318,7 @@
     <div id="outerdiv" class="wrap">
         <div id="innerdiv" style="position:absolute;">
             <img id="bigimg" src="" />
-            <img id="close" style="width: 50px; height: 50px;" src="./images/close.png" />
+            <div id="closeContanier"><img id="close" src="./images/close.png" /></div>
         </div>
     </div>
 </body>
